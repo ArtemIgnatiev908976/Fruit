@@ -1,3 +1,6 @@
+
+
+//добавили переключение по слайдеру и анимацию
 document.addEventListener('DOMContentLoaded', ()=>{
 
 
@@ -45,3 +48,6 @@ tabsParent.addEventListener('click', (event)=>{
 
 
 });
+
+
+//добавили переключение по слайдеру и анимацию
