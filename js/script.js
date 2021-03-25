@@ -1,9 +1,9 @@
 
 
-//добавили переключение по слайдеру и анимацию
+
 document.addEventListener('DOMContentLoaded', ()=>{
 
-
+//добавили переключение по слайдеру и анимацию
 const tabs =document.querySelectorAll('.tabheader__item');
 const tabsContent = document.querySelectorAll('.tabcontent');
 const tabsParent = document.querySelector('.tabheader__items');
@@ -42,12 +42,76 @@ tabsParent.addEventListener('click', (event)=>{
 
     }
 
-
+//добавили переключение по слайдеру и анимацию
 })
 
+//Реализация таймера на странице
+
+const deadline = '2021-06-11';
+
+//фукция получения разницы между датами
+function getTimeRemaining(endTime){
+    const t = Date.parse(endTime) - Date.parse(new Date()),
+        days = Math.floor(t / (1000 * 60 * 60 *24)),
+        hours = Math.floor((t/(1000 * 60 *60) % 24)),
+        minutes = Math.floor((t / 1000 / 60 ) % 60),
+        seconds = Math.floor((t / 1000) % 60);
+
+    return{
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+    };
+}
 
 
+function getZero(num){
+    if(num>=0 && num <10){
+        return `0${num}`;
+    }
+    else{
+        return num;
+    }
+}
+
+
+
+
+function setClock(selector,endTime){
+    const timer = document.querySelector(selector),
+
+    days = timer.querySelector('#days'),
+    hours = timer.querySelector('#hours'),
+    minutes = timer.querySelector('#minutes'),
+    seconds = timer.querySelector('#seconds'),
+    timeInterval = setInterval(updateClock,1000)
+
+    updateClock();
+
+    function updateClock(){
+        const timer = getTimeRemaining(endTime);
+
+        days.innerHTML = getZero(timer.days) ;
+        hours.innerHTML =getZero (timer.hours);
+        minutes.innerHTML =getZero (timer.minutes);
+        seconds.innerHTML =getZero(timer.seconds) ;
+
+        if(timer.total <=0){
+            clearInterval(timeInterval);
+        }
+    }
+
+}
+
+
+//Реализация таймера на странице
+setClock('.timer', deadline)
 });
 
 
-//добавили переключение по слайдеру и анимацию
+
+
+////////////////////////////////////
+
