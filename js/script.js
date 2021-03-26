@@ -108,6 +108,24 @@ function setClock(selector,endTime){
 
 //Реализация таймера на странице
 setClock('.timer', deadline)
+
+
+    //Модальное окно
+
+    const modalTrigger = document.querySelector('[data-modal]');
+    const modal = document.querySelector('.modal');
+    const modalCloseBtn = document.querySelector('[data-close]');
+
+    modalTrigger.addEventListener('click', ()=>{
+        modal.classList.add('show');
+        modal.classList.remove('hide');
+    })
+    modalCloseBtn.addEventListener('click', ()=>{
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+
+    })
+    //Модальное окно
 });
 
 
@@ -115,3 +133,6 @@ setClock('.timer', deadline)
 
 ////////////////////////////////////
 
+
+
+//
