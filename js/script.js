@@ -148,7 +148,7 @@ setClock('.timer', deadline)
 
     //по нажатию на ESC закрывается модалка
     document.addEventListener('keydown', (e)=>{
-        if (e.code === "Escape"){
+        if (e.code === "Escape" && modal.classList.contains('show')){
             closeModal();
         }
     })
