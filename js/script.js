@@ -111,21 +111,48 @@ setClock('.timer', deadline)
 
 
     //Модальное окно
-
-    const modalTrigger = document.querySelector('[data-modal]');
+    const modalTrigger = document.querySelectorAll('[data-modal]');
     const modal = document.querySelector('.modal');
     const modalCloseBtn = document.querySelector('[data-close]');
+//добавили на все кнопки перебором forEach
+    modalTrigger.forEach(btn =>{
+        btn.addEventListener('click', ()=>{
+            modal.classList.add('show');
+            modal.classList.remove('hide');
+            document.body.style.overflow = 'hidden';  // убераем скролл на станице
+        });
 
-    modalTrigger.addEventListener('click', ()=>{
-        modal.classList.add('show');
-        modal.classList.remove('hide');
-    })
-    modalCloseBtn.addEventListener('click', ()=>{
+    });
+
+
+    // функция закрытия модалки
+    function  closeModal(){
         modal.classList.add('hide');
         modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
 
-    })
+
+    modalCloseBtn.addEventListener('click', closeModal)
     //Модальное окно
+
+
+//Закрывать модалку если кликать вне заны моодалки
+    modal.addEventListener('click',(e)=>{
+        if (e.target === modal){
+        closeModal();
+        }
+    })
+//Закрывать модалку если кликать вне заны моодалки
+
+
+    //по нажатию на ESC закрывается модалка
+    document.addEventListener('keydown', (e)=>{
+        if (e.code === "Escape"){
+            closeModal();
+        }
+    })
+
 });
 
 
