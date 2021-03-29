@@ -157,24 +157,117 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // показ модалки через 6 сек
-    const modalTimerId = setTimeout(openModal,6000)
+    const modalTimerId = setTimeout(openModal, 116000)
     // показ модалки через 6 сек
 
     //показ модалки когда доходим до конца страницы
-    function showModalByScroll(){
-        if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight){
+    function showModalByScroll() {
+        if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
             openModal();
-            window.removeEventListener('scroll',showModalByScroll); // если показали1 раз больше не выскакивает
-            window.removeEventListener('scroll',showModalByScroll); // если показали1 раз больше не выскакивает
+            window.removeEventListener('scroll', showModalByScroll); // если показали1 раз больше не выскакивает
+            window.removeEventListener('scroll', showModalByScroll); // если показали1 раз больше не выскакивает
         }
 
     }
+
     //показ модалки когда доходим до конца страницы
-    window.addEventListener('scroll',showModalByScroll)
+    window.addEventListener('scroll', showModalByScroll)
+    //показ модалки когда доходим до конца страницы
+
+
+
+
+    ////используем классы для карточек
+    class MenuCard {
+        constructor(src, alt, title, descr, price,parentSelector) {
+            this.src = src;
+            this.alt = alt;
+            this.title = title;
+            this.descr = descr;
+            this.price = price;
+            this.parent = document.querySelector(parentSelector);
+            this.transfer = 75;
+            this.changeToRUB();
+        }
+
+        changeToRUB() {
+            this.price = this.price * this.transfer;
+        }
+
+        render() {
+            const element = document.createElement('div');
+            element.innerHTML = `
+            <div class="menu__item">
+                    <img src=${this.src} alt=${this.alt}>
+                    <h3 class="menu__item-subtitle">${this.title}</h3>
+                    <div class="menu__item-descr">${this.descr}</div>
+                    <div class="menu__item-divider"></div>
+                    <div class="menu__item-price">
+                        <div class="menu__item-cost">Цена:</div>
+                        <div class="menu__item-total"><span>${this.price}</span> руб/день</div>
+                    </div>
+                </div>
+            `;
+            this.parent.append(element);
+        }
+
+
+    }
+    ////используем классы для карточек
+
+    new MenuCard(
+        "img/tabs/vegy.jpg",
+        "vegy",
+        '"Фитнес"',
+       'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+       9,
+        '.menu .container'
+
+    ).render();
+
+    new MenuCard(
+        "img/tabs/elite.jpg",
+        "elite",
+        '"Премиум"',
+        'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан',
+        3,
+        '.menu .container'
+
+    ).render();
+
+    new MenuCard(
+        "img/tabs/post.jpg",
+        "post",
+        '"Постное"',
+        'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
+        6,
+        '.menu .container'
+
+    ).render();
+
+
+
+
+    ////используем классы для карточек
+
+
+
+
+
+
+
+
+
+
+
 });
 
 
-////////////////////////////////////
 
 
-//
+
+
+
+
+
+
