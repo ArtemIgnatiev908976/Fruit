@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ArtemIgnatiev908976/Fruit/issues"
   },
-  "homepage": "https://github.com/ArtemIgnatiev908976/Fruit#readme"
+  "homepage": "https://github.com/ArtemIgnatiev908976/Fruit#readme",
+  "devDependencies": {
+    "json-server": "^0.16.3"
+  }
 }
