@@ -175,8 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //показ модалки когда доходим до конца страницы
 
 
-
-
     ////используем классы для карточек
     class MenuCard {
         constructor(src, alt, title, descr, price, parentSelector, ...classes) {
@@ -208,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
 
-
             element.innerHTML = `
             
                     <img src=${this.src} alt=${this.alt}>
@@ -226,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     }
+
     ////используем классы для карточек
 
     new MenuCard(
@@ -237,7 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
         '.menu .container',
         'menu__item',
         'big'
-
     ).render();
 
     new MenuCard(
@@ -249,7 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
         '.menu .container',
         'menu__item',
         'big'
-
     ).render();
 
     new MenuCard(
@@ -261,18 +257,13 @@ document.addEventListener('DOMContentLoaded', () => {
         '.menu .container',
         'menu__item',
         'big'
-
     ).render();
-
-
 
 
     ////используем классы для карточек
 
 
-
     // Rest оператор
-
 
 
     //Реализация скрипта для отправки данных
@@ -306,43 +297,39 @@ document.addEventListener('DOMContentLoaded', () => {
             form.insertAdjacentElement('afterend', statusMessage);
 
 
-
-
-            const request = new XMLHttpRequest();
-            request.open('POST', 'server.php');
-
-
-            request.setRequestHeader('Content-type', 'application/json');
             const formData = new FormData(form);
 
             const object = {};
             formData.forEach(function(value, key) {
                 object[key] = value;
-            });
+            })
 
 
-            const json = JSON.stringify(object);
-
-            request.send(json);
-
-            request.addEventListener('load', () => {
-                if (request.status === 200) {
-                    console.log(request.response);
+            fetch('server1.php', {
+                    method: "POST",
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify(object)
+                })
+                .then(data => data.text())
+                .then(data => {
+                    console.log(data);
                     showThanksModal(message.success);
                     form.reset();
                     statusMessage.remove();
-
-                } else {
+                })
+                .catch(() => {
                     showThanksModal(message.failure);
-                }
-            })
+                })
+                .finally(() => {
+                    form.reset();
+                })
+
 
         })
     }
 
     //Реализация скрипта для отправки данных
     //Forms
-
 
 
     //красивое оповещение пользователя
@@ -372,6 +359,20 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }, 4000);
     }
+
     //красивое оповещение пользователя
 
+    //API
+
+    // fetch('https://jsonplaceholder.typicode.com/posts', {
+    //
+    //     method: "POST",
+    //     body: JSON.stringify({name: 'Alex'}),
+    //     headers: {'Content-type': 'application/json'}
+    //
+    // })
+    //     .then(response => response.json())
+    //     .then(json => console.log(json))
+    //
+    //API
 });
