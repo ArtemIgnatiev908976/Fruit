@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-//добавили переключение по слайдеру и анимацию
+    //добавили переключение по слайдеру и анимацию
     const tabs = document.querySelectorAll('.tabheader__item');
     const tabsContent = document.querySelectorAll('.tabcontent');
     const tabsParent = document.querySelector('.tabheader__items');
@@ -39,14 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
 
-//добавили переключение по слайдеру и анимацию
+        //добавили переключение по слайдеру и анимацию
     })
 
-//Реализация таймера на странице
+    //Реализация таймера на странице
 
     const deadline = '2021-06-11';
 
-//фукция получения разницы между датами
+    //фукция получения разницы между датами
     function getTimeRemaining(endTime) {
         const t = Date.parse(endTime) - Date.parse(new Date()),
             days = Math.floor(t / (1000 * 60 * 60 * 24)),
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-//Реализация таймера на странице
+    //Реализация таймера на странице
     setClock('.timer', deadline)
 
 
@@ -108,21 +108,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTrigger = document.querySelectorAll('[data-modal]');
     const modal = document.querySelector('.modal');
     // const modalCloseBtn = document.querySelector('[data-close]');
-//добавили на все кнопки перебором forEach
+    //добавили на все кнопки перебором forEach
     modalTrigger.forEach(btn => {
         btn.addEventListener('click', openModal)
 
     });
 
-//Функция открытия модалки
+    //Функция открытия модалки
     function openModal() {
         modal.classList.add('show');
         modal.classList.remove('hide');
-        document.body.style.overflow = 'hidden';  // убераем скролл на станице
+        document.body.style.overflow = 'hidden'; // убераем скролл на станице
         clearInterval(modalTimerId); // если открыли окно то не выскакивает
     }
 
-//Функция открытия модалки
+    //Функция открытия модалки
 
 
     // функция закрытия модалки
@@ -138,27 +138,27 @@ document.addEventListener('DOMContentLoaded', () => {
     //Модальное окно
 
 
-//Закрывать модалку если кликать вне заны моодалки
+    //Закрывать модалку если кликать вне заны моодалки
     modal.addEventListener('click', (e) => {
-        if (e.target === modal || e.target.getAttribute('data-close') == '') {
-            closeModal();
-        }
-    })
-//Закрывать модалку если кликать вне заны моодалки
+            if (e.target === modal || e.target.getAttribute('data-close') == '') {
+                closeModal();
+            }
+        })
+        //Закрывать модалку если кликать вне заны моодалки
 
 
     //по нажатию на ESC закрывается модалка
     document.addEventListener('keydown', (e) => {
-        if (e.code === "Escape" && modal.classList.contains('show')) {
-            closeModal();
-        }
-    })
-//по нажатию на ESC закрывается модалка
+            if (e.code === "Escape" && modal.classList.contains('show')) {
+                closeModal();
+            }
+        })
+        //по нажатию на ESC закрывается модалка
 
 
-// показ модалки через 6 сек
-    const modalTimerId = setTimeout(openModal, 116000)
     // показ модалки через 6 сек
+    const modalTimerId = setTimeout(openModal, 116000)
+        // показ модалки через 6 сек
 
     //показ модалки когда доходим до конца страницы
     function showModalByScroll() {
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //показ модалки когда доходим до конца страницы
     window.addEventListener('scroll', showModalByScroll)
-    //показ модалки когда доходим до конца страницы
+        //показ модалки когда доходим до конца страницы
 
 
     ////используем классы для карточек
@@ -225,40 +225,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    const getResource = async (url) => {
-        const res = await fetch(url);
+    const getResource = async(url) => {
+            const res = await fetch(url);
 
-        if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+            if (!res.ok) {
+                throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+            }
+
+
+            return await res.json(); //промис
+
+
         }
-
-
-        return await res.json(); //промис
-
-
-    }
-//     ////используем классы для карточек
-// getResource(' http://localhost:3000/menu')
-//     .then(data =>{
-//         data.forEach(({img, altimg, title, descr, price}) =>{
-//            new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
-//         });
-//     })
+        //     ////используем классы для карточек
+        // getResource(' http://localhost:3000/menu')
+        //     .then(data =>{
+        //         data.forEach(({img, altimg, title, descr, price}) =>{
+        //            new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+        //         });
+        //     })
 
     axios.get(' http://localhost:3000/menu')
         .then(data => {
-            data.data.forEach(({img, altimg, title, descr, price}) => {
+            data.data.forEach(({ img, altimg, title, descr, price }) => {
                 new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
             });
         });
 
-// ////используем классы для карточек
+    // ////используем классы для карточек
 
     // getResource(' http://localhost:3000/menu')
     //     .then(data => createCard(data));
 
     function createCard(data) {
-        data.forEach(({img, altimg, title, descr, price}) => {
+        data.forEach(({ img, altimg, title, descr, price }) => {
             const element = document.createElement('div');
             element.classList.add('menu__item');
             element.innerHTML =
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-// Rest оператор
+    // Rest оператор
 
 
     //Реализация скрипта для отправки данных
@@ -296,13 +296,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     forms.forEach(item => {
-        bindPostData(item);
-    })
-//ассинхронный код
-    const postData = async (url, data) => {
+            bindPostData(item);
+        })
+        //ассинхронный код
+    const postData = async(url, data) => {
         const res = await fetch(url, {
             method: "POST",
-            headers: {'Content-type': 'application/json'},
+            headers: { 'Content-type': 'application/json' },
             body: data
         });
         return await res.json(); //промис
@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             postData('http://localhost:3000/requests', json)
 
-                .then(data => {
+            .then(data => {
                     console.log(data);
                     showThanksModal(message.success);
                     form.reset();
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //Forms
 
 
-//красивое оповещение пользователя
+    //красивое оповещение пользователя
 
     function showThanksModal(message) {
         const prevModalDialog = document.querySelector('.modal__dialog');
@@ -386,9 +386,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => data.json())
         .then(res => console.log(res))
 
-//красивое оповещение пользователя
+    //красивое оповещение пользователя
 
-//API
+    //API
 
     // fetch('https://jsonplaceholder.typicode.com/posts', {
     //
@@ -400,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //     .then(response => response.json())
     //     .then(json => console.log(json))
     //
-//API
+    //API
 
 
     //Слайдер
@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     next.addEventListener('click', () => {
 
-        if (offset == deleteNotDigits(width) * (slides.length - 1)) {  //'500px'
+        if (offset == deleteNotDigits(width) * (slides.length - 1)) { //'500px'
             offset = 0;
         } else {
             offset += deleteNotDigits(width);
@@ -549,25 +549,25 @@ document.addEventListener('DOMContentLoaded', () => {
         dots[slideIndex - 1].style.opacity = 1;
     });
     dots.forEach(dot => {
-        dot.addEventListener('click', (e) => {
-            const slideTo = e.target.getAttribute('data-slide-to');
-            slideIndex = slideTo;
-            offset = deleteNotDigits(width) * (slideTo - 1);
-            slidesField.style.transform = `translateX(-${offset}px)`;
+            dot.addEventListener('click', (e) => {
+                const slideTo = e.target.getAttribute('data-slide-to');
+                slideIndex = slideTo;
+                offset = deleteNotDigits(width) * (slideTo - 1);
+                slidesField.style.transform = `translateX(-${offset}px)`;
 
-            if (slides.length < 10) {
-                current.textContent = `0${slideIndex}`;
-            } else {
-                current.textContent = slideIndex
-            }
+                if (slides.length < 10) {
+                    current.textContent = `0${slideIndex}`;
+                } else {
+                    current.textContent = slideIndex
+                }
 
-            dots.forEach(dot => dot.style.opacity = '.5s');
-            dots[slideIndex - 1].style.opacity = 1;
+                dots.forEach(dot => dot.style.opacity = '.5s');
+                dots[slideIndex - 1].style.opacity = 1;
 
 
+            })
         })
-    })
-    // 2 вариант слайдера
+        // 2 вариант слайдера
 
     // 1 вариант слайдера
 
@@ -617,7 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //     plusSlides(+1);
     //
     // })
-//1 вариант слайдера
+    //1 вариант слайдера
     //Слайдер
 
     //Точки лайдера
@@ -627,14 +627,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     //Калькулятор
+
     const result = document.querySelector('.calculating__result span');
-    let sex = 'female',
-        height, weight, age,
+
+    let sex, height, weight, age, ratio;
+
+    if (localStorage.getItem('sex')) {
+        sex = localStorage.getItem('sex');
+    } else {
+        sex = 'female';
+        localStorage.setItem('sex', 'female');
+    }
+
+    if (localStorage.getItem('ratio')) {
+        ratio = localStorage.getItem('ratio');
+    } else {
         ratio = 1.375;
+        localStorage.setItem('ratio', 1.375);
+    }
 
     function calcTotal() {
         if (!sex || !height || !weight || !age || !ratio) {
-            result.textContent = '____'; // Можете придумать что угодно
+            result.textContent = '____';
             return;
         }
         if (sex === 'female') {
@@ -646,15 +660,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     calcTotal();
 
-    function getStaticInformation(parentSelector, activeClass) {
-        const elements = document.querySelectorAll(`${parentSelector} div`);
+    function initLocalSettings(selector, activeClass) {
+        const elements = document.querySelectorAll(selector);
+
+        elements.forEach(elem => {
+            elem.classList.remove(activeClass);
+            if (elem.getAttribute('id') === localStorage.getItem('sex')) {
+                elem.classList.add(activeClass);
+            }
+            if (elem.getAttribute('data-ratio') === localStorage.getItem('ratio')) {
+                elem.classList.add(activeClass);
+            }
+        });
+    }
+
+    initLocalSettings('#gender div', 'calculating__choose-item_active');
+    initLocalSettings('.calculating__choose_big div', 'calculating__choose-item_active');
+
+    function getStaticInformation(selector, activeClass) {
+        const elements = document.querySelectorAll(selector);
 
         elements.forEach(elem => {
             elem.addEventListener('click', (e) => {
                 if (e.target.getAttribute('data-ratio')) {
                     ratio = +e.target.getAttribute('data-ratio');
+                    localStorage.setItem('ratio', +e.target.getAttribute('data-ratio'));
                 } else {
                     sex = e.target.getAttribute('id');
+                    localStorage.setItem('sex', e.target.getAttribute('id'));
                 }
 
                 elements.forEach(elem => {
@@ -668,14 +701,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    getStaticInformation('#gender', 'calculating__choose-item_active');
-    getStaticInformation('.calculating__choose_big', 'calculating__choose-item_active');
+    getStaticInformation('#gender div', 'calculating__choose-item_active');
+    getStaticInformation('.calculating__choose_big div', 'calculating__choose-item_active');
 
     function getDynamicInformation(selector) {
         const input = document.querySelector(selector);
 
         input.addEventListener('input', () => {
-            switch(input.getAttribute('id')) {
+            if (input.value.match(/\D/g)) {
+                input.style.border = "1px solid red";
+            } else {
+                input.style.border = 'none';
+            }
+            switch (input.getAttribute('id')) {
                 case "height":
                     height = +input.value;
                     break;
@@ -694,16 +732,6 @@ document.addEventListener('DOMContentLoaded', () => {
     getDynamicInformation('#height');
     getDynamicInformation('#weight');
     getDynamicInformation('#age');
-//Калькулятор
+    //Калькулятор
 
 });
-
-
-
-
-
-
-
-
-
-
