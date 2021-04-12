@@ -11,11 +11,11 @@ function cards() {
             this.classes = classes;
             this.parent = document.querySelector(parentSelector);
             this.transfer = 27;
-            this.changeToUAH();
+            this.changeToUAH(); 
         }
 
         changeToUAH() {
-            this.price = this.price * this.transfer;
+            this.price = this.price * this.transfer; 
         }
 
         render() {
@@ -51,11 +51,11 @@ function cards() {
 
     async function getResource(url) {
         let res = await fetch(url);
-
+    
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}, status: ${res.status}`);
         }
-
+    
         return await res.json();
     }
 }

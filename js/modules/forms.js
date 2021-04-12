@@ -20,7 +20,7 @@ function forms() {
             },
             body: data
         });
-
+    
         return await res.json();
     };
 
@@ -37,17 +37,17 @@ function forms() {
                 margin: 0 auto;
             `;
             form.insertAdjacentElement('afterend', statusMessage);
-
+        
             const formData = new FormData(form);
 
             const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
             postData('http://localhost:3000/requests', json)
-                .then(data => {
-                    console.log(data);
-                    showThanksModal(message.success);
-                    statusMessage.remove();
-                }).catch(() => {
+            .then(data => {
+                console.log(data);
+                showThanksModal(message.success);
+                statusMessage.remove();
+            }).catch(() => {
                 showThanksModal(message.failure);
             }).finally(() => {
                 form.reset();

@@ -21,7 +21,7 @@ function slider() {
         total.textContent = slides.length;
         current.textContent =  slideIndex;
     }
-
+    
     slidesField.style.width = 100 * slides.length + '%';
     slidesField.style.display = 'flex';
     slidesField.style.transition = '0.5s all';
@@ -35,7 +35,7 @@ function slider() {
     slider.style.position = 'relative';
 
     const indicators = document.createElement('ol'),
-        dots = [];
+          dots = [];
     indicators.classList.add('carousel-indicators');
     indicators.style.cssText = `
         position: absolute;
@@ -80,7 +80,7 @@ function slider() {
         if (offset == (deleteNotDigits(width) * (slides.length - 1))) {
             offset = 0;
         } else {
-            offset += deleteNotDigits(width);
+            offset += deleteNotDigits(width); 
         }
 
         slidesField.style.transform = `translateX(-${offset}px)`;
